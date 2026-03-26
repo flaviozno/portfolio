@@ -8,18 +8,19 @@ import {
 } from "recharts";
 
 const data = [
-  { skill: "JavaScript/TypeScript", level: 94 },
-  { skill: "Node.js/NestJS", level: 92 },
-  { skill: "React (MFE)", level: 90 },
-  { skill: "Databases (SQL/NoSQL)", level: 86 },
-  { skill: "Cloud & DevOps", level: 84 },
-  { skill: "Microservices & Messaging", level: 91 },
-  { skill: "Testing & Clean Architecture", level: 88 },
+  { skill: "JavaScript/TypeScript", level: 85 },
+  { skill: "Node.js/NestJS", level: 80 },
+  { skill: "React (MFE)", level: 75 },
+  { skill: "Databases (SQL/NoSQL)", level: 85 },
+  { skill: "Cloud & DevOps", level: 70 },
+  { skill: "Microservices & Messaging", level: 80 },
+  { skill: "Testing & Clean Architecture", level: 80 },
 ];
 
 const TechStack = () => {
   const ref = useRef(null);
   const [isInView, setIsInView] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,6 +39,39 @@ const TechStack = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const radarData = isMobile
+    ? data.map((item) => {
+        const shortLabelMap = {
+          "JavaScript/TypeScript": "JS/TS",
+          "Node.js/NestJS": "Node/Nest",
+          "React (MFE)": "React",
+          "Databases (SQL/NoSQL)": "DB",
+          "Cloud & DevOps": "Cloud",
+          "Microservices & Messaging": "Microservices",
+          "Testing & Clean Architecture": "Testing",
+        };
+
+        return {
+          ...item,
+          radarSkill: shortLabelMap[item.skill] ?? item.skill,
+        };
+      })
+    : data.map((item) => ({
+        ...item,
+        radarSkill: item.skill,
+      }));
 
   return (
     <section
@@ -81,12 +115,12 @@ const TechStack = () => {
                     </p>
                   </div>
 
-                  <ResponsiveContainer width="100%" height={360}>
-                    <RadarChart data={data}>
+                  <ResponsiveContainer width="100%" height={isMobile ? 280 : 360}>
+                    <RadarChart data={radarData}>
                       <PolarGrid stroke="#374151" />
                       <PolarAngleAxis
-                        dataKey="skill"
-                        tick={{ fill: "#9ca3af", fontSize: 12 }}
+                        dataKey="radarSkill"
+                        tick={{ fill: "#9ca3af", fontSize: isMobile ? 10 : 12 }}
                       />
                       <Radar
                         name="Skills"
