@@ -1,18 +1,38 @@
-# React + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfólio pessoal feito com React, Vite e Tailwind CSS.
 
-Currently, two official plugins are available:
+O projeto reúne apresentação, experiência profissional, stack, formação e contato em uma interface com visual mais técnico e interativo.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- React
+- Vite
+- Tailwind CSS
+- Lucide React
+- Recharts
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Rodando o projeto
 
-Note: This will impact Vite dev & build performances.
+```bash
+npm install
+npm run dev
+```
 
-## Expanding the ESLint configuration
+Outros comandos:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run build
+npm run preview
+npm run lint
+```
+
+## Onde editar cada parte
+
+- Hero: src/components/Hero.jsx
+- Sobre: src/components/About.jsx
+- Stack: src/components/TechStack.jsx
+- Experiência: src/components/Experience.jsx
+- Educação: src/components/Education.jsx
+- Contato: src/components/Contact.jsx
+

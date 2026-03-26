@@ -68,6 +68,8 @@ const socialLinks = [
   },
 ];
 
+const mobileWidgets = widgets.slice(0, 4);
+
 const Hero = () => {
   const handleSocialClick = (event, item) => {
     if (item.external) {
@@ -127,10 +129,10 @@ const Hero = () => {
         }
       `}</style>
 
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-28 pt-24 sm:px-6 md:px-8 md:py-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a2e_1px,transparent_1px),linear-gradient(to_bottom,#1a1a2e_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
 
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 hidden overflow-hidden md:block">
           {widgets.map((widget) => {
             const Icon = widget.icon;
 
@@ -151,17 +153,17 @@ const Hero = () => {
           })}
         </div>
 
-        <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
-          <div className="relative">
-            <h1 className="mb-6 text-6xl font-bold opacity-0 md:text-8xl [animation:fadeInDown_0.8s_ease-out_forwards]">
+        <div className="relative z-10 mx-auto w-full max-w-6xl text-center">
+          <div className="relative mx-auto max-w-xl md:max-w-none">
+            <h1 className="mb-6 text-5xl font-bold leading-tight opacity-0 sm:text-6xl md:text-8xl [animation:fadeInDown_0.8s_ease-out_forwards]">
               <span className="text-gradient glow">Flávio Filho</span>
             </h1>
 
-            <p className="mb-8 font-mono text-xl text-gray-400 opacity-0 md:text-2xl [animation:fadeInUp_0.8s_ease-out_0.2s_forwards]">
+            <p className="mb-8 px-2 font-mono text-lg text-gray-400 opacity-0 sm:text-xl md:px-0 md:text-2xl [animation:fadeInUp_0.8s_ease-out_0.2s_forwards]">
               Software Developer & Tech Enthusiast
             </p>
 
-            <div className="mb-12 flex justify-center gap-6 opacity-0 [animation:fadeInUp_0.8s_ease-out_0.4s_forwards]">
+            <div className="mb-10 flex justify-center gap-4 opacity-0 sm:gap-6 [animation:fadeInUp_0.8s_ease-out_0.4s_forwards]">
               {socialLinks.map((item) => {
                 const Icon = item.icon;
 
@@ -173,7 +175,7 @@ const Hero = () => {
                     onClick={(event) => handleSocialClick(event, item)}
                     target={item.external ? "_blank" : undefined}
                     rel={item.external ? "noopener noreferrer" : undefined}
-                    className="group relative overflow-hidden rounded-lg bg-gray-800/50 p-3 transition-all duration-300 hover:scale-110 hover:-rotate-3 hover:bg-[#00ff88]/15 hover:shadow-[0_0_20px_rgba(0,255,136,0.3)] focus:outline-none focus-visible:outline-none focus-visible:ring-0"
+                    className="group relative overflow-hidden rounded-lg bg-gray-800/50 p-3 transition-all duration-300 hover:scale-110 hover:-rotate-3 hover:bg-[#00ff88]/15 hover:shadow-[0_0_20px_rgba(0,255,136,0.3)] focus:outline-none focus-visible:outline-none focus-visible:ring-0 sm:p-3.5"
                     style={{ WebkitTapHighlightColor: "transparent" }}
                   >
                     <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-[#00ff88]/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
@@ -182,6 +184,27 @@ const Hero = () => {
                       size={24}
                     />
                   </a>
+                );
+              })}
+            </div>
+
+            <div className="mx-auto mb-10 grid max-w-md grid-cols-2 gap-3 text-left opacity-0 md:hidden [animation:fadeInUp_0.8s_ease-out_0.6s_forwards]">
+              {mobileWidgets.map((widget) => {
+                const Icon = widget.icon;
+
+                return (
+                  <div
+                    key={widget.label}
+                    className="relative rounded-2xl border border-white/10 bg-white/5 px-4 py-3 shadow-[0_8px_24px_rgba(0,0,0,0.18)] backdrop-blur-xl"
+                  >
+                    <div className="mb-1 pr-6 text-[10px] uppercase tracking-[0.8px] text-white/55">
+                      {widget.label}
+                    </div>
+                    <div className="text-sm font-bold text-[#00ff88] sm:text-base">
+                      {widget.value}
+                    </div>
+                    <Icon className="absolute right-3 top-3 h-4 w-4 text-white/35" />
+                  </div>
                 );
               })}
             </div>
@@ -196,8 +219,7 @@ const Hero = () => {
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-[float-slow_6s_ease-in-out_infinite]">
           <Zap
-            className="text-terminal-text animate-[chevron-bounce_2s_ease-in-out_infinite]"
-            size={48}
+            className="h-9 w-9 animate-[chevron-bounce_2s_ease-in-out_infinite] text-terminal-text md:h-12 md:w-12"
           />
         </div>
       </section>
