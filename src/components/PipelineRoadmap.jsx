@@ -169,8 +169,10 @@ const PipelineRoadmap = () => {
         }
       `}</style>
 
-      <div className="pointer-events-none fixed right-2 top-1/2 z-[60] hidden -translate-y-1/2 xl:block">
-        <div className="relative origin-right scale-[0.88]">
+      <div
+        className={`pointer-events-none fixed z-[60] right-3 sm:right-4 md:right-5 lg:top-1/2 lg:bottom-auto lg:-translate-y-1/2 lg:right-3 xl:right-4 hidden sm:block ${isCollapsed ? "bottom-4 sm:bottom-5" : "bottom-8 sm:bottom-10 md:bottom-12"}`}
+      >
+        <div className="relative">
           <div
             className={`absolute inset-0 bg-terminal-accent/10 blur-xl transition-all duration-300 ${
               isCollapsed ? "rounded-[1.5rem]" : "rounded-[1.75rem]"
@@ -178,69 +180,77 @@ const PipelineRoadmap = () => {
           />
 
           <div
-            className={`pointer-events-auto relative flex overflow-hidden border border-white/10 bg-[#050810]/75 shadow-[0_18px_60px_rgba(0,0,0,0.42)] backdrop-blur-2xl transition-all duration-300 ${
+            className={`pointer-events-auto relative flex flex-col overflow-hidden border border-white/10 bg-[#050810]/75 shadow-[0_18px_60px_rgba(0,0,0,0.42)] backdrop-blur-2xl transition-all duration-300 ${
               isCollapsed
-                ? "w-[92px] flex-col gap-3 rounded-[1.5rem] p-3"
-                : "w-[272px] flex-col gap-4 rounded-[1.75rem] p-3.5"
+                ? "w-[68px] sm:w-[76px] md:w-[80px] gap-2 sm:gap-2.5 rounded-2xl sm:rounded-[1.5rem] p-2 sm:p-2.5"
+                : "w-[calc(100vw-24px)] max-w-[300px] sm:w-[280px] md:w-[300px] lg:w-[272px] xl:w-[290px] gap-3 sm:gap-4 rounded-[1.5rem] sm:rounded-[1.75rem] p-3 sm:p-3.5"
             }`}
           >
             <div
-              className={`flex items-start ${isCollapsed ? "justify-center" : "justify-between"}`}
+              className={`flex items-center ${isCollapsed ? "flex-col justify-center gap-2" : "justify-between gap-2"}`}
             >
               {!isCollapsed && (
-                <div>
-                  <p className="mb-1 text-[10px] uppercase tracking-[0.22em] text-terminal-accent/70">
+                <div className="min-w-0 flex-1">
+                  <p className="mb-0.5 text-[9px] sm:text-[10px] uppercase tracking-[0.22em] text-terminal-accent/70 truncate">
                     Portfolio Deploy
                   </p>
-                  <h3 className="text-lg font-semibold text-white">
+                  <h3 className="text-sm sm:text-base font-semibold text-white leading-tight truncate">
                     Resume Deployment
                   </h3>
                 </div>
               )}
 
               <div
-                className={`flex items-center ${isCollapsed ? "flex-col gap-2" : "gap-2"}`}
+                className={`flex shrink-0 items-center ${isCollapsed ? "flex-col gap-2 w-full" : "gap-1.5"}`}
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-terminal-accent/20 bg-terminal-accent/10 text-terminal-accent animate-[glowFloat_4s_ease-in-out_infinite]">
+                <div
+                  className={`flex items-center justify-center rounded-lg sm:rounded-xl border border-terminal-accent/20 bg-terminal-accent/10 text-terminal-accent animate-[glowFloat_4s_ease-in-out_infinite] ${isCollapsed ? "h-8 w-8 sm:h-9 sm:w-9" : "h-7 w-7 sm:h-8 sm:w-8"}`}
+                >
                   {deployed ? (
-                    <CheckCircle2 size={18} />
+                    <CheckCircle2 size={15} />
                   ) : deploying ? (
-                    <LoaderCircle size={18} className="animate-spin" />
+                    <LoaderCircle size={15} className="animate-spin" />
                   ) : (
-                    <Sparkles size={17} />
+                    <Sparkles size={14} />
                   )}
                 </div>
 
                 <button
                   type="button"
                   onClick={() => setIsCollapsed((current) => !current)}
-                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-white/70 transition-colors hover:border-terminal-accent/30 hover:text-terminal-accent"
+                  className={`flex items-center justify-center rounded-lg sm:rounded-xl border border-white/10 bg-white/[0.03] text-white/70 transition-colors hover:border-terminal-accent/30 hover:text-terminal-accent ${isCollapsed ? "h-8 w-8 sm:h-9 sm:w-9" : "h-7 w-7 sm:h-8 sm:w-8"}`}
                   aria-label={
                     isCollapsed ? "Expand timeline" : "Collapse timeline"
                   }
                   title={isCollapsed ? "Expand" : "Collapse"}
                 >
                   {isCollapsed ? (
-                    <ChevronsLeft size={16} />
+                    <ChevronsLeft
+                      size={13}
+                      className="sm:w-[14px] sm:h-[14px]"
+                    />
                   ) : (
-                    <ChevronsRight size={16} />
+                    <ChevronsRight
+                      size={13}
+                      className="sm:w-[14px] sm:h-[14px]"
+                    />
                   )}
                 </button>
               </div>
             </div>
 
             {!isCollapsed && (
-              <div className="rounded-2xl border border-white/8 bg-white/[0.03] px-3.5 py-3">
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-[0.16em] text-white/45">
+              <div className="rounded-xl sm:rounded-2xl border border-white/8 bg-white/[0.03] px-3 py-2.5 sm:px-3.5 sm:py-3">
+                <div className="mb-2 flex items-center justify-between gap-2">
+                  <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.16em] text-white/45 truncate">
                     Deployment progress
                   </span>
-                  <span className="font-mono text-sm text-terminal-accent">
+                  <span className="font-mono text-xs sm:text-sm text-terminal-accent shrink-0">
                     {percent}%
                   </span>
                 </div>
 
-                <div className="relative h-2 overflow-hidden rounded-full bg-white/5">
+                <div className="relative h-1.5 sm:h-2 overflow-hidden rounded-full bg-white/5">
                   <div
                     className="absolute inset-y-0 left-0 rounded-full bg-[linear-gradient(90deg,rgba(0,255,136,0.18),rgba(0,255,136,0.95),rgba(147,255,209,0.7),rgba(0,255,136,0.18))] bg-[length:200%_100%]"
                     style={{
@@ -252,25 +262,33 @@ const PipelineRoadmap = () => {
               </div>
             )}
 
-            <div className={`relative ${isCollapsed ? "pl-0" : "pl-5"}`}>
+            <div
+              className={`relative ${isCollapsed ? "pl-0" : "pl-[18px] sm:pl-5"}`}
+            >
               <div
-                className={`absolute top-2 w-[3px] rounded-full bg-white/6 ${
+                className={`absolute top-2 w-[2px] sm:w-[3px] rounded-full bg-white/6 ${
                   isCollapsed
                     ? "left-1/2 h-[calc(100%-16px)] -translate-x-1/2"
-                    : "left-[14px] h-[calc(100%-16px)]"
+                    : "left-[13px] sm:left-[14px] h-[calc(100%-16px)]"
                 }`}
               />
 
               <div
-                className={`absolute top-2 w-[3px] rounded-full bg-[linear-gradient(180deg,rgba(0,255,136,1),rgba(0,255,136,0.08))] shadow-[0_0_18px_rgba(0,255,136,0.35)] transition-all duration-500 ${
-                  isCollapsed ? "left-1/2 -translate-x-1/2" : "left-[14px]"
+                className={`absolute top-2 w-[2px] sm:w-[3px] rounded-full bg-[linear-gradient(180deg,rgba(0,255,136,1),rgba(0,255,136,0.08))] shadow-[0_0_18px_rgba(0,255,136,0.35)] transition-all duration-500 ${
+                  isCollapsed
+                    ? "left-1/2 -translate-x-1/2"
+                    : "left-[13px] sm:left-[14px]"
                 }`}
-                style={{
-                  height: `${Math.max(progress * 100, 4)}%`,
-                }}
+                style={{ height: `${Math.max(progress * 100, 4)}%` }}
               />
 
-              <div className={isCollapsed ? "space-y-2.5" : "space-y-3"}>
+              <div
+                className={
+                  isCollapsed
+                    ? "space-y-2 sm:space-y-2.5"
+                    : "space-y-2 sm:space-y-2.5"
+                }
+              >
                 {stages.map((stage, index) => {
                   const Icon = stage.icon;
                   const stageProgress = progress * totalStages;
@@ -278,44 +296,39 @@ const PipelineRoadmap = () => {
                   const isActive = activeStageIndex === index && !deployed;
                   const isDeployNode = stage.key === "deploy";
 
+                  const stateClasses = isCompleted
+                    ? "border-terminal-accent/20 bg-terminal-accent/[0.08]"
+                    : isActive
+                      ? "border-terminal-accent/30 bg-white/[0.05]"
+                      : "border-white/6 bg-white/[0.02]";
+
                   return (
                     <div
                       key={stage.key}
-                      className={`group relative rounded-2xl border transition-all duration-500 ${
+                      className={`group relative rounded-xl sm:rounded-2xl border transition-all duration-500 ${stateClasses} ${
                         isCollapsed
-                          ? `mx-auto flex w-[56px] items-center justify-center px-0 py-2.5 ${
-                              isCompleted
-                                ? "border-terminal-accent/20 bg-terminal-accent/[0.08]"
-                                : isActive
-                                  ? "border-terminal-accent/30 bg-white/[0.05]"
-                                  : "border-white/6 bg-white/[0.02]"
-                            }`
-                          : `${
-                              isCompleted
-                                ? "border-terminal-accent/20 bg-terminal-accent/[0.08]"
-                                : isActive
-                                  ? "border-terminal-accent/30 bg-white/[0.05]"
-                                  : "border-white/6 bg-white/[0.02]"
-                            } flex items-start gap-3 px-3 py-2.5`
+                          ? "mx-auto flex items-center justify-center w-[48px] sm:w-[52px] md:w-[56px] px-0 py-2 sm:py-2.5"
+                          : "flex items-start gap-2 sm:gap-3 px-2.5 sm:px-3 py-2 sm:py-2.5"
                       }`}
                       title={isCollapsed ? stage.title : undefined}
                     >
+                      {!isCollapsed && (
+                        <div
+                          className={`absolute top-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 -translate-y-1/2 -left-[9px] sm:-left-[10px] rounded-full border transition-all duration-500 ${
+                            isCompleted
+                              ? "border-terminal-accent bg-terminal-accent shadow-[0_0_18px_rgba(0,255,136,0.45)]"
+                              : isActive
+                                ? "border-terminal-accent bg-[#050810] animate-[pulseNode_1.8s_ease-in-out_infinite]"
+                                : "border-white/15 bg-[#0a101a]"
+                          }`}
+                        />
+                      )}
                       <div
-                        className={`absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full border transition-all duration-500 ${
+                        className={`shrink-0 flex items-center justify-center rounded-lg sm:rounded-xl border transition-all duration-500 ${
                           isCollapsed
-                            ? "left-1/2 -translate-x-1/2"
-                            : "left-[-10px]"
+                            ? "h-8 w-8 sm:h-9 sm:w-9 mt-0"
+                            : "h-7 w-7 sm:h-8 sm:w-8 mt-0.5"
                         } ${
-                          isCompleted
-                            ? "border-terminal-accent bg-terminal-accent shadow-[0_0_18px_rgba(0,255,136,0.45)]"
-                            : isActive
-                              ? "border-terminal-accent bg-[#050810] animate-[pulseNode_1.8s_ease-in-out_infinite]"
-                              : "border-white/15 bg-[#0a101a]"
-                        }`}
-                      />
-
-                      <div
-                        className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition-all duration-500 ${
                           isCompleted
                             ? "border-terminal-accent/25 bg-terminal-accent/10 text-terminal-accent"
                             : isActive
@@ -325,25 +338,25 @@ const PipelineRoadmap = () => {
                       >
                         {isDeployNode && deploying ? (
                           <Rocket
-                            size={16}
+                            size={14}
                             className="animate-[rocketLaunch_1.2s_ease-in-out_infinite]"
                           />
                         ) : isCompleted ? (
-                          <CheckCircle2 size={16} />
+                          <CheckCircle2 size={14} />
                         ) : (
-                          <Icon size={16} />
+                          <Icon size={14} />
                         )}
                       </div>
 
                       {!isCollapsed && (
                         <div className="min-w-0 flex-1">
-                          <div className="mb-1 flex items-center justify-between gap-2">
-                            <h4 className="text-[15px] font-semibold text-white">
+                          <div className="mb-0.5 sm:mb-1 flex items-center justify-between gap-1.5 sm:gap-2">
+                            <h4 className="text-[13px] sm:text-[14px] font-semibold text-white truncate">
                               {stage.title}
                             </h4>
 
                             <span
-                              className={`rounded-full px-2 py-1 text-[10px] uppercase tracking-[0.14em] ${
+                              className={`shrink-0 rounded-full px-1.5 sm:px-2 py-0.5 sm:py-1 text-[9px] sm:text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.14em] ${
                                 isCompleted
                                   ? "bg-terminal-accent/15 text-terminal-accent"
                                   : isActive
@@ -359,7 +372,7 @@ const PipelineRoadmap = () => {
                             </span>
                           </div>
 
-                          <p className="text-xs leading-relaxed text-white/60">
+                          <p className="text-[11px] sm:text-xs leading-relaxed text-white/60 line-clamp-2">
                             {stage.subtitle}
                           </p>
                         </div>
@@ -370,15 +383,15 @@ const PipelineRoadmap = () => {
               </div>
             </div>
 
-            {!isCollapsed && (
-              <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-3.5">
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-[0.16em] text-white/45">
+            {!isCollapsed && !deployed && (
+              <div className="rounded-xl sm:rounded-2xl border border-white/8 bg-white/[0.03] p-2.5 sm:p-3.5">
+                <div className="mb-1.5 sm:mb-2 flex items-center justify-between gap-2">
+                  <span className="text-[9px] sm:text-xs uppercase tracking-[0.16em] text-white/45">
                     Status
                   </span>
 
                   <span
-                    className={`font-mono text-xs ${
+                    className={`font-mono text-[10px] sm:text-xs shrink-0 ${
                       deployed
                         ? "text-terminal-accent"
                         : deploying
@@ -394,7 +407,7 @@ const PipelineRoadmap = () => {
                   </span>
                 </div>
 
-                <div className="text-sm leading-relaxed text-white/70">
+                <div className="text-[11px] sm:text-sm leading-relaxed text-white/70">
                   {deployed
                     ? "My resume has been published and you are now viewing the live final version."
                     : deploying
@@ -405,13 +418,15 @@ const PipelineRoadmap = () => {
             )}
 
             {deployed && !isCollapsed && (
-              <div className="rounded-2xl border border-terminal-accent/20 bg-terminal-accent/[0.08] p-3.5 animate-[deployPop_0.45s_ease-out]">
+              <div className="rounded-xl sm:rounded-2xl border border-terminal-accent/20 bg-terminal-accent/[0.08] p-2.5 sm:p-3.5 animate-[deployPop_0.45s_ease-out]">
                 <div className="mb-1 flex items-center gap-2 text-terminal-accent">
-                  <Rocket size={14} />
-                  <span className="text-sm font-semibold">Resume published</span>
+                  <Rocket size={13} className="sm:w-[14px] sm:h-[14px]" />
+                  <span className="text-xs sm:text-sm font-semibold">
+                    Resume published
+                  </span>
                 </div>
 
-                <p className="text-sm text-white/75">
+                <p className="text-[11px] sm:text-sm text-white/75">
                   You followed the process and now my portfolio is officially
                   live.
                 </p>
