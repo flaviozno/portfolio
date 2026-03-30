@@ -194,9 +194,6 @@ const PipelineRoadmap = () => {
                   <p className="mb-0.5 text-[9px] sm:text-[10px] uppercase tracking-[0.22em] text-terminal-accent/70 truncate">
                     Portfolio Deploy
                   </p>
-                  <h3 className="text-sm sm:text-base font-semibold text-white leading-tight truncate">
-                    Resume Deployment
-                  </h3>
                 </div>
               )}
 
