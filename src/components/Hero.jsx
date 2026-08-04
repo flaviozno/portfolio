@@ -91,11 +91,6 @@ const Hero = () => {
   return (
     <>
       <style>{`
-        @keyframes float-slow {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(20px); }
-        }
-
         @keyframes fadeInDown {
           from {
             opacity: 0;
@@ -116,11 +111,6 @@ const Hero = () => {
             opacity: 1;
             transform: translateY(0);
           }
-        }
-
-        @keyframes chevron-bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(10px); }
         }
 
         @keyframes widget-float {
@@ -155,7 +145,10 @@ const Hero = () => {
 
         <div className="relative z-10 mx-auto w-full max-w-6xl text-center">
           <div className="relative mx-auto max-w-xl md:max-w-none">
-            <h1 className="mb-6 text-5xl font-bold leading-tight opacity-0 sm:text-6xl md:text-8xl [animation:fadeInDown_0.8s_ease-out_forwards]">
+            <h1
+              data-scroll-journey-start
+              className="mb-6 text-5xl font-bold leading-tight opacity-0 sm:text-6xl md:text-8xl [animation:fadeInDown_0.8s_ease-out_forwards]"
+            >
               <span className="text-gradient glow">Flávio Filho</span>
             </h1>
 
@@ -209,18 +202,7 @@ const Hero = () => {
               })}
             </div>
 
-            <div className="mt-10 flex flex-col items-center gap-2 opacity-0 [animation:fadeInUp_0.8s_ease-out_1.2s_forwards]">
-              <span className="text-xs uppercase tracking-[1px] text-white/60">
-                Scroll to discover more{" "}
-              </span>
-            </div>
           </div>
-        </div>
-
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-[float-slow_6s_ease-in-out_infinite]">
-          <Zap
-            className="h-9 w-9 animate-[chevron-bounce_2s_ease-in-out_infinite] text-terminal-text md:h-12 md:w-12"
-          />
         </div>
       </section>
     </>

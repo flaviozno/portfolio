@@ -9,6 +9,7 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import PipelineRoadmap from "./components/PipelineRoadmap";
 
+
 function App() {
   const [loading, setLoading] = useState(true);
 
