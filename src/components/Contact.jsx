@@ -1,4 +1,6 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useLayoutEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   MessageCircle,
   Mail,
@@ -16,6 +18,7 @@ import {
   Smartphone,
   Monitor,
 } from "lucide-react";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 const floatingApps = [
   {
@@ -85,6 +88,13 @@ const contactResults = [
   },
 ];
 
+const revealSteps = [
+  {
+    target: ".contact-intro",
+    from: { autoAlpha: 0, y: 22, duration: 0.7, stagger: 0.12 },
+  },
+];
+
 const Contact = () => {
   const ref = useRef(null);
   const typingTimeoutRef = useRef(null);
@@ -93,6 +103,34 @@ const Contact = () => {
   const [isInView, setIsInView] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [displayedText, setDisplayedText] = useState("");
+  useScrollReveal(ref, revealSteps);
+
+  useLayoutEffect(() => {
+    if (!isInView) return;
+
+    ScrollTrigger.refresh();
+    const media = gsap.matchMedia();
+    media.add(
+      "(prefers-reduced-motion: no-preference)",
+      () => {
+        gsap.from(".contact-search", {
+          autoAlpha: 0,
+          y: 28,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".contact-search",
+            start: "top 92%",
+            end: "top 55%",
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        });
+      },
+      ref,
+    );
+
+    return () => media.revert();
+  }, [isInView]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -175,26 +213,24 @@ const Contact = () => {
       <section
         id="contact"
         ref={ref}
+        aria-labelledby="contact-title"
         className="flex min-h-screen items-center justify-center px-6 py-20"
       >
         <div className="mx-auto w-full max-w-5xl">
-          <div
-            className={`transition-all duration-1000 ${
-              isInView
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
-          >
-            <h2 className="mb-4 text-center text-5xl font-bold md:text-6xl">
-              <span className="text-gradient">Let’s Build Something Great</span>
+          <div>
+            <h2
+              id="contact-title"
+              className="contact-intro mb-5 text-center text-4xl font-semibold leading-[1.1] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl"
+            >
+              Let&apos;s build something <span className="text-terminal-accent">great.</span>
             </h2>
 
-            <p className="mb-16 text-center text-lg text-gray-400">
-              Let’s work together on something amazing.
+            <p className="contact-intro mx-auto mb-16 max-w-2xl text-center text-base leading-relaxed text-slate-400 sm:text-lg">
+              Let&apos;s work together on something amazing.
             </p>
 
             {isInView && (
-              <div className="relative mx-auto flex w-fit flex-col items-center">
+              <div className="contact-search relative mx-auto flex w-fit flex-col items-center">
                 <div className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(0,255,136,0.08)_0%,rgba(0,255,136,0.03)_35%,transparent_70%)] blur-3xl animate-[pulseGlow_5s_ease-in-out_infinite]" />
 
                 <div className="pointer-events-none absolute inset-0 hidden md:block">

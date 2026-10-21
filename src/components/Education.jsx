@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -8,6 +8,7 @@ import {
   Trophy,
   Sparkles,
 } from "lucide-react";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 const education = [
   {
@@ -80,28 +81,24 @@ const floatingIcons = [
   },
 ];
 
+const revealSteps = [
+  { target: ".education-title", from: { autoAlpha: 0, y: 24, duration: 0.7 } },
+  {
+    target: ".education-stage",
+    from: { autoAlpha: 0, y: 30, duration: 0.85 },
+    at: "-=0.35",
+  },
+  {
+    target: ".education-controls",
+    from: { autoAlpha: 0, y: 14, duration: 0.55 },
+    at: "-=0.35",
+  },
+];
+
 const Education = () => {
   const ref = useRef(null);
-  const [isInView, setIsInView] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1, rootMargin: "-100px" }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  useScrollReveal(ref, revealSteps);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % education.length);
@@ -144,21 +141,21 @@ const Education = () => {
       <section
         id="education"
         ref={ref}
+        aria-labelledby="education-title"
         className="flex min-h-screen items-center px-6 py-20"
       >
         <div className="mx-auto w-full max-w-6xl">
-          <div
-            className={`transition-all duration-1000 ${
-              isInView
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
-          >
-            <h2 className="mb-20 text-center text-5xl font-bold md:text-6xl">
-              <span className="text-gradient">Education & Courses</span>
-            </h2>
+          <div>
+            <div className="education-title mb-14 max-w-3xl sm:mb-16">
+              <h2
+                id="education-title"
+                className="text-4xl font-semibold leading-[1.1] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl"
+              >
+                Education &amp; <span className="text-terminal-accent">courses.</span>
+              </h2>
+            </div>
 
-            <div className="relative">
+            <div className="education-stage relative">
               <div
                 key={currentSlide}
                 className={`relative h-[520px] overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br ${current.color} shadow-[0_25px_80px_rgba(0,0,0,0.32)] transition-all duration-500`}
@@ -222,7 +219,7 @@ const Education = () => {
                 </div>
               </div>
 
-              <div className="mt-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+              <div className="education-controls mt-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-3">
                   <button
                     className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-white transition-all duration-300 hover:scale-105 hover:border-white/20 hover:bg-white/[0.08]"

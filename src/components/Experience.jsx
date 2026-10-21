@@ -1,5 +1,7 @@
-import { useRef, useEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { Briefcase, MapPin, Calendar } from "lucide-react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 const experiences = [
   {
@@ -81,42 +83,45 @@ const queryPositions = [
   "top-[70%] left-[15%] [animation-delay:3.5s]",
 ];
 
+const revealSteps = [
+  { target: ".experience-title", from: { autoAlpha: 0, y: 24, duration: 0.7 } },
+  {
+    target: ".experience-query, .experience-count",
+    from: { autoAlpha: 0, y: 14, duration: 0.55, stagger: 0.1 },
+    at: "-=0.35",
+  },
+  {
+    target: ".experience-card",
+    from: { autoAlpha: 0, y: 32, duration: 0.65 },
+    each: true,
+  },
+  {
+    target: ".experience-pagination",
+    from: { autoAlpha: 0, y: 12, duration: 0.5 },
+    at: "-=0.25",
+  },
+];
+
 const Experience = () => {
   const ref = useRef(null);
-  const [isInView, setIsInView] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const previousPageRef = useRef(currentPage);
   const itemsPerPage = 3;
+  useScrollReveal(ref, revealSteps, currentPage);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1, rootMargin: "-100px" }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
+  useLayoutEffect(() => {
+    if (previousPageRef.current !== currentPage) {
+      previousPageRef.current = currentPage;
+      ScrollTrigger.refresh();
     }
-
-    return () => observer.disconnect();
-  }, []);
+  }, [currentPage]);
 
   const offset = (currentPage - 1) * itemsPerPage;
   const visibleExperiences = experiences.slice(offset, offset + itemsPerPage);
   const totalPages = Math.ceil(experiences.length / itemsPerPage);
 
   const handlePageChange = (page) => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setCurrentPage(page);
-      setIsLoading(false);
-    }, 500);
+    setCurrentPage(page);
   };
 
   return (
@@ -145,6 +150,7 @@ const Experience = () => {
       <section
         id="experience"
         ref={ref}
+        aria-labelledby="experience-title"
         className="relative flex min-h-screen items-center px-6 py-20"
       >
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -159,47 +165,31 @@ const Experience = () => {
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-4xl">
-          <div
-            className={`transition-all duration-1000 ${
-              isInView
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
-          >
-            <h2 className="mb-16 text-center text-5xl font-bold md:text-6xl">
-              <span className="text-gradient">Career Journey</span>
-            </h2>
+          <div>
+            <div className="experience-title mb-14 max-w-3xl sm:mb-16">
+              <h2
+                id="experience-title"
+                className="text-4xl font-semibold leading-[1.1] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl"
+              >
+                Career <span className="text-terminal-accent">journey.</span>
+              </h2>
+            </div>
 
-            {isInView && (
-              <>
-                <div className="mb-6 overflow-x-auto rounded-xl border border-terminal-accent/20 bg-terminal-accent/5 px-4 py-3 font-mono text-sm text-terminal-accent shadow-[0_0_20px_rgba(0,255,136,0.04)]">
-                  SELECT * FROM experience WHERE status = 'active' ORDER BY date
-                  DESC LIMIT {itemsPerPage} OFFSET {offset};
-                </div>
+            <div className="experience-query mb-6 overflow-x-auto rounded-xl border border-terminal-accent/20 bg-terminal-accent/5 px-4 py-3 font-mono text-sm text-terminal-accent shadow-[0_0_20px_rgba(0,255,136,0.04)]">
+              SELECT * FROM experience WHERE status = 'active' ORDER BY date
+              DESC LIMIT {itemsPerPage} OFFSET {offset};
+            </div>
 
-                <div className="mb-8 font-mono text-sm text-gray-500">
-                  ({` Showing ${visibleExperiences.length} of ${experiences.length} rows `})
-                </div>
-              </>
-            )}
+            <div className="experience-count mb-8 font-mono text-sm text-gray-500">
+              ({` Showing ${visibleExperiences.length} of ${experiences.length} rows `})
+            </div>
 
-            <div
-              className={`relative transition-opacity duration-300 ${
-                isLoading ? "opacity-60" : "opacity-100"
-              }`}
-            >
+            <div className="relative">
               <div className="space-y-8">
                 {visibleExperiences.map((exp, index) => (
                   <div
                     key={`${exp.title}-${currentPage}-${index}`}
-                    className={`group relative transition-all duration-700 ${
-                      isInView
-                        ? "translate-y-0 opacity-100"
-                        : "translate-y-8 opacity-0"
-                    }`}
-                    style={{
-                      transitionDelay: `${250 + index * 120}ms`,
-                    }}
+                    className="experience-card group relative"
                   >
                     <div className="rounded-2xl border border-gray-800 bg-gray-900/50 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-terminal-accent/40 hover:shadow-[0_10px_40px_rgba(0,255,136,0.08)]">
                       <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
@@ -239,17 +229,12 @@ const Experience = () => {
                 ))}
               </div>
 
-              {isLoading && (
-                <div className="absolute inset-0 z-10 flex items-center justify-center rounded-2xl bg-black/10 backdrop-blur-[2px]">
-                  <div className="h-10 w-10 animate-spin rounded-full border-4 border-terminal-accent/20 border-t-terminal-accent" />
-                </div>
-              )}
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <div className="experience-pagination mt-10 flex flex-wrap items-center justify-center gap-3">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1 || isLoading}
+                disabled={currentPage === 1}
                 className="rounded-lg border border-terminal-accent bg-terminal-accent/10 px-4 py-2 font-mono text-sm text-terminal-accent transition-all duration-300 hover:bg-terminal-accent/20 hover:shadow-[0_0_12px_rgba(0,255,136,0.18)] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 ← Prev
@@ -260,7 +245,6 @@ const Experience = () => {
                   <button
                     key={page}
                     onClick={() => handlePageChange(page)}
-                    disabled={isLoading}
                     className={`min-w-[42px] rounded-lg border px-4 py-2 font-mono text-sm transition-all duration-300 ${
                       currentPage === page
                         ? "border-terminal-accent bg-terminal-accent text-[#050810] shadow-[0_0_16px_rgba(0,255,136,0.2)]"
@@ -274,7 +258,7 @@ const Experience = () => {
 
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages || isLoading}
+                disabled={currentPage === totalPages}
                 className="rounded-lg border border-terminal-accent bg-terminal-accent/10 px-4 py-2 font-mono text-sm text-terminal-accent transition-all duration-300 hover:bg-terminal-accent/20 hover:shadow-[0_0_12px_rgba(0,255,136,0.18)] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Next →

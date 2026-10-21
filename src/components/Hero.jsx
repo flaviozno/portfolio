@@ -1,3 +1,6 @@
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Computer,
   Link,
@@ -9,6 +12,8 @@ import {
   MapPin,
   Languages,
 } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const widgets = [
   {
@@ -71,6 +76,32 @@ const socialLinks = [
 const mobileWidgets = widgets.slice(0, 4);
 
 const Hero = () => {
+  const sectionRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const media = gsap.matchMedia();
+    media.add(
+      "(prefers-reduced-motion: no-preference)",
+      () => {
+        gsap.to(".hero-scroll-content, .hero-scroll-widgets", {
+          autoAlpha: 0,
+          y: -32,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "bottom 76%",
+            end: "bottom 22%",
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        });
+      },
+      sectionRef,
+    );
+
+    return () => media.revert();
+  }, []);
+
   const handleSocialClick = (event, item) => {
     if (item.external) {
       return;
@@ -119,10 +150,10 @@ const Hero = () => {
         }
       `}</style>
 
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-28 pt-24 sm:px-6 md:px-8 md:py-0">
+      <section ref={sectionRef} className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-28 pt-24 sm:px-6 md:px-8 md:py-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a2e_1px,transparent_1px),linear-gradient(to_bottom,#1a1a2e_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
 
-        <div className="pointer-events-none absolute inset-0 hidden overflow-hidden md:block">
+        <div className="hero-scroll-widgets pointer-events-none absolute inset-0 hidden overflow-hidden md:block">
           {widgets.map((widget) => {
             const Icon = widget.icon;
 
@@ -143,7 +174,7 @@ const Hero = () => {
           })}
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-6xl text-center">
+        <div className="hero-scroll-content relative z-10 mx-auto w-full max-w-6xl text-center">
           <div className="relative mx-auto max-w-xl md:max-w-none">
             <h1
               data-scroll-journey-start
