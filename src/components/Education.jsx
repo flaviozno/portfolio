@@ -82,16 +82,14 @@ const floatingIcons = [
 ];
 
 const revealSteps = [
-  { target: ".education-title", from: { autoAlpha: 0, y: 24, duration: 0.7 } },
+  { target: ".education-title", from: { x: -34, duration: 0.7 } },
   {
     target: ".education-stage",
-    from: { autoAlpha: 0, y: 30, duration: 0.85 },
-    at: "-=0.35",
+    from: { clipPath: "inset(0% 0% 100% 0%)", y: 16, duration: 1 },
   },
   {
     target: ".education-controls",
-    from: { autoAlpha: 0, y: 14, duration: 0.55 },
-    at: "-=0.35",
+    from: { y: 18, duration: 0.6 },
   },
 ];
 

@@ -1,6 +1,4 @@
-import { useRef, useState, useEffect, useLayoutEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useState, useEffect } from "react";
 import {
   MessageCircle,
   Mail,
@@ -91,7 +89,14 @@ const contactResults = [
 const revealSteps = [
   {
     target: ".contact-intro",
-    from: { autoAlpha: 0, y: 22, duration: 0.7, stagger: 0.12 },
+    from: { scale: 0.95, y: 16, duration: 0.75, stagger: 0.14 },
+  },
+];
+
+const searchRevealSteps = [
+  {
+    target: ".contact-search",
+    from: { scale: 0.9, filter: "blur(8px)", duration: 0.95 },
   },
 ];
 
@@ -104,33 +109,7 @@ const Contact = () => {
   const [showResults, setShowResults] = useState(false);
   const [displayedText, setDisplayedText] = useState("");
   useScrollReveal(ref, revealSteps);
-
-  useLayoutEffect(() => {
-    if (!isInView) return;
-
-    ScrollTrigger.refresh();
-    const media = gsap.matchMedia();
-    media.add(
-      "(prefers-reduced-motion: no-preference)",
-      () => {
-        gsap.from(".contact-search", {
-          autoAlpha: 0,
-          y: 28,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".contact-search",
-            start: "top 92%",
-            end: "top 55%",
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-          },
-        });
-      },
-      ref,
-    );
-
-    return () => media.revert();
-  }, [isInView]);
+  useScrollReveal(ref, searchRevealSteps, isInView);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

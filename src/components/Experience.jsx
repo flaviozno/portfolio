@@ -84,21 +84,31 @@ const queryPositions = [
 ];
 
 const revealSteps = [
-  { target: ".experience-title", from: { autoAlpha: 0, y: 24, duration: 0.7 } },
+  { target: ".experience-title", from: { y: 30, duration: 0.75 } },
   {
-    target: ".experience-query, .experience-count",
-    from: { autoAlpha: 0, y: 14, duration: 0.55, stagger: 0.1 },
-    at: "-=0.35",
+    target: ".experience-query",
+    from: { x: 42, duration: 0.7 },
   },
   {
-    target: ".experience-card",
-    from: { autoAlpha: 0, y: 32, duration: 0.65 },
-    each: true,
+    target: ".experience-count",
+    from: { y: 12, duration: 0.5 },
   },
   {
     target: ".experience-pagination",
-    from: { autoAlpha: 0, y: 12, duration: 0.5 },
-    at: "-=0.25",
+    from: { y: 14, duration: 0.55 },
+  },
+];
+
+const cardRevealSteps = [
+  {
+    target: ".experience-card",
+    from: (index) => ({
+      x: index % 2 === 0 ? -46 : 46,
+      rotation: index % 2 === 0 ? -1.2 : 1.2,
+      scale: 0.98,
+      duration: 0.8,
+    }),
+    each: true,
   },
 ];
 
@@ -107,7 +117,8 @@ const Experience = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const previousPageRef = useRef(currentPage);
   const itemsPerPage = 3;
-  useScrollReveal(ref, revealSteps, currentPage);
+  useScrollReveal(ref, revealSteps);
+  useScrollReveal(ref, cardRevealSteps, currentPage);
 
   useLayoutEffect(() => {
     if (previousPageRef.current !== currentPage) {

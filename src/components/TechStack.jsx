@@ -23,24 +23,16 @@ const strengths = [
 const revealSteps = [
   {
     target: ".tech-intro > *",
-    from: { autoAlpha: 0, y: 20, duration: 0.65, stagger: 0.1 },
-  },
-  {
-    target: ".tech-panel",
-    from: { autoAlpha: 0, y: 24, duration: 0.7 },
-    at: "-=0.3",
+    from: { y: 30, duration: 0.75, stagger: 0.14 },
   },
   {
     target: ".tech-card",
-    from: { autoAlpha: 0, y: 28, duration: 0.5 },
+    from: { clipPath: "inset(0% 100% 0% 0%)", x: -12, duration: 0.7 },
     each: true,
-    start: "top 90%",
-    end: "top 58%",
   },
   {
     target: ".tech-link",
-    from: { autoAlpha: 0, duration: 0.5 },
-    at: "-=0.2",
+    from: { x: 18, duration: 0.55 },
   },
 ];
 

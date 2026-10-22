@@ -1,11 +1,8 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import me from "../assets/me.png";
 import meCartoon from "../assets/me-cartoon.png";
-
-gsap.registerPlugin(ScrollTrigger);
+import useScrollReveal from "../hooks/useScrollReveal";
 
 const capabilities = [
   { number: "01", title: "Interfaces", description: "Clear, responsive experiences built with React and TypeScript." },
@@ -15,6 +12,19 @@ const capabilities = [
 
 const LENS_RADIUS = 118;
 
+const revealSteps = [
+  { target: ".about-eyebrow", from: { x: -28, duration: 0.55 } },
+  { target: ".about-heading", from: { x: -52, duration: 0.85 } },
+  { target: ".about-copy", from: { x: -38, duration: 0.75, stagger: 0.12 } },
+  { target: ".about-actions", from: { x: -24, duration: 0.65 } },
+  { target: ".about-portrait", from: { x: 64, scale: 0.96, duration: 1 } },
+  {
+    target: ".about-capability",
+    from: (index) => ({ x: (index - 1) * 28, y: 18, duration: 0.7 }),
+    each: true,
+  },
+];
+
 const About = () => {
   const sectionRef = useRef(null);
   const revealLayerRef = useRef(null);
@@ -22,61 +32,10 @@ const About = () => {
   const frameRef = useRef(null);
   const pointerRef = useRef({ x: 0, y: 0 });
   const [isPortraitActive, setIsPortraitActive] = useState(false);
+  useScrollReveal(sectionRef, revealSteps);
 
-  useLayoutEffect(() => {
-    const media = gsap.matchMedia();
-    media.add(
-      "(prefers-reduced-motion: no-preference)",
-      () => {
-        gsap.timeline({
-          defaults: { ease: "none" },
-          scrollTrigger: {
-            trigger: ".about-eyebrow",
-            start: "top 90%",
-            end: "top 24%",
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-          },
-        })
-          .from(".about-eyebrow", { autoAlpha: 0, y: 18, duration: 0.55 })
-          .from(".about-heading", { autoAlpha: 0, y: 42, duration: 0.9 }, "-=0.2")
-          .from(".about-copy", { autoAlpha: 0, y: 24, duration: 0.7, stagger: 0.12 }, "-=0.65")
-          .from(".about-actions", { autoAlpha: 0, y: 18, duration: 0.55 }, "-=0.25");
-
-        gsap.from(".about-portrait", {
-          autoAlpha: 0,
-          y: 54,
-          scale: 0.96,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".about-portrait",
-            start: "top 90%",
-            end: "top 48%",
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-          },
-        });
-
-        gsap.utils.toArray(".about-capability", sectionRef.current).forEach((item) => {
-          gsap.from(item, {
-            autoAlpha: 0,
-            y: 28,
-            ease: "none",
-            scrollTrigger: {
-              trigger: item,
-              start: "top 92%",
-              end: "top 63%",
-              scrub: 0.6,
-              invalidateOnRefresh: true,
-            },
-          });
-        });
-      },
-      sectionRef,
-    );
-
+  useEffect(() => {
     return () => {
-      media.revert();
       if (frameRef.current) cancelAnimationFrame(frameRef.current);
     };
   }, []);
@@ -116,7 +75,7 @@ const About = () => {
       <div className="mx-auto w-full max-w-6xl">
         <div className="mt-12 grid items-center gap-14 lg:mt-16 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-16 xl:gap-24">
           <div className="max-w-2xl">
-            <p className="about-copy mb-5 text-sm font-medium uppercase tracking-[0.16em] text-white/55">Software Developer · NTT DATA</p>
+            <p className="about-eyebrow mb-5 text-sm font-medium uppercase tracking-[0.16em] text-white/55">Software Developer · NTT DATA</p>
             <h2 id="about-title" className="about-heading max-w-[680px] text-[clamp(2.75rem,5.1vw,4.75rem)] font-semibold leading-[1.08] tracking-[-0.055em] text-white">
               Making complex systems feel <span className="text-terminal-accent">simple.</span>
             </h2>

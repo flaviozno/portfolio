@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 
 graphify-out/
+.codex/
+AGENTS.md
+# Local environment files (auto-commit protection)
+.env
+.env.*
+
