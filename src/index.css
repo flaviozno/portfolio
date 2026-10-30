@@ -2,18 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-terminal-bg text-white font-sans antialiased;
-  }
+:root {
+  color-scheme: light;
+  --canvas: 250 249 246;
+  --surface: 255 255 255;
+  --ink: 25 27 29;
+  --muted: 91 96 102;
+  --line: 218 219 216;
+  --accent: 53 79 184;
+  --accent-soft: 231 235 250;
 }
 
-@layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-terminal-text to-terminal-accent bg-clip-text text-transparent;
-  }
-  
-  .glow {
-    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --canvas: 18 20 23;
+  --surface: 29 32 36;
+  --ink: 245 245 242;
+  --muted: 178 181 188;
+  --line: 65 68 73;
+  --accent: 165 182 255;
+  --accent-soft: 42 49 75;
+}
+
+html { scroll-behavior: auto; }
+body { @apply bg-canvas font-sans text-ink antialiased; margin: 0; }
+body, button, a, section, article, header, footer { transition: background-color .28s ease, border-color .28s ease, color .28s ease; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+::selection { background: rgb(var(--accent) / .25); }
+:focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 4px; }
+section[id] { scroll-margin-top: 6rem; }
+.container-page { @apply mx-auto w-full max-w-[1320px] px-5 sm:px-8 lg:px-12; }
+.eyebrow { @apply text-[10px] font-semibold uppercase tracking-[.24em] text-accent sm:text-xs; }
+.section-title { @apply font-display text-[clamp(2.45rem,5vw,5.1rem)] leading-[1.14] tracking-[-.055em]; }
+.section-space { @apply py-20 sm:py-24 lg:py-32; }
+.text-balance { text-wrap: balance; }
+.serif-italic { @apply font-display italic font-normal; }
+.rule { @apply border-t border-line; }
+
+:root[data-motion='reduced'] *,
+:root[data-motion='reduced'] *::before,
+:root[data-motion='reduced'] *::after {
+  scroll-behavior: auto !important;
+  animation-duration: .01ms !important;
+  transition-duration: .01ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion='full']) *,
+  :root:not([data-motion='full']) *::before,
+  :root:not([data-motion='full']) *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
   }
 }

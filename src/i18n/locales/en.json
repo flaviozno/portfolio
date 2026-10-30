@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "title": "Flávio Filho — Digital solutions for business",
+    "description": "Websites, software, integrations, automation and thoughtful AI to help businesses launch, connect and evolve."
+  },
+  "nav": { "services": "Services", "about": "About", "experience": "Experience", "work": "Work", "contact": "Contact", "menu": "Open menu", "close": "Close menu", "themeLight": "Switch to light theme", "themeDark": "Switch to dark theme", "motionSetting": "Animations", "motionEnable": "Enable animations", "motionReduce": "Reduce animations", "language": "Choose language", "primary": "Primary navigation", "mobile": "Mobile navigation", "top": "Flávio Filho — back to top" },
+  "hero": {
+    "eyebrow": "Software engineering · Digital solutions",
+    "lineOne": "Technology that",
+    "lineTwo": "moves business",
+    "lineThree": "forward.",
+    "description": "I build websites, software, integrations and automation—with AI where it adds value—to turn complex challenges into practical progress.",
+    "primary": "Let's talk about your idea",
+    "secondary": "Explore services",
+    "portraitAlt": "Portrait of Flávio Filho",
+    "portraitLabel": "Flávio Filho",
+    "portraitNote": "Software developer · Brazil",
+    "scroll": "Scroll to explore"
+  },
+  "services": {
+    "eyebrow": "01 / What I do",
+    "titleOne": "Built around",
+    "titleTwo": "your next move.",
+    "intro": "Bring the challenge. I turn the need into a useful digital solution—whether it is a website, an integration, or something that does not fit a category yet.",
+    "items": [
+      { "title": "Websites & landing pages", "description": "Launch a clear, responsive presence that makes it easy for people to understand your offer and take action." },
+      { "title": "Custom software", "description": "Shape the right tools for your workflows, customers and growth instead of forcing your business into a template." },
+      { "title": "APIs & integrations", "description": "Connect platforms and data so information moves reliably between the tools your team already uses." },
+      { "title": "Workflow automation", "description": "Reduce repetitive steps and give your team more time for work that needs human judgment." },
+      { "title": "RPA solutions", "description": "Automate rule-based tasks across existing systems when manual operations slow the business down." },
+      { "title": "Legacy modernization", "description": "Evolve older applications with more maintainable architecture. AI can support analysis and documentation when it helps modernize with care." },
+      { "title": "Technical consulting & support", "description": "Get practical help to maintain software, untangle problems and choose a sound technical direction." }
+    ],
+    "openEyebrow": "Start with your challenge",
+    "openTitleOne": "A problem to solve?",
+    "openTitleTwo": "An idea to bring to life?",
+    "openBody": "You do not need to arrive with a ready-made solution. I help understand the context, explore possibilities, and build the path that makes sense for your business.",
+    "openCta": "Tell me your challenge",
+    "aiEyebrow": "Responsible AI in practice",
+    "aiTitle": "The right tool at the right time.",
+    "aiBody": "I use AI responsibly to support analysis, prototyping and automation when it adds value. Privacy, human review and engineering quality guide each choice."
+  },
+  "about": {
+    "eyebrow": "02 / The person behind the work",
+    "titleOne": "Clear thinking.",
+    "titleTwo": "Useful technology.",
+    "lead": "I'm Flávio, a software developer working across backend systems, interfaces and cloud environments.",
+    "body": "My experience spans banking and financial technology, corporate platforms and digital products in Latin America. I connect technical decisions to the people and processes they serve, with attention to maintainability, collaboration and the details that make software dependable.",
+    "note": "Based in Brazil · Working across Latin America",
+    "capabilitiesLabel": "Where I work best",
+    "capabilities": ["Backend & distributed systems", "Web interfaces", "Cloud & integrations", "Automation & modernization"]
+  },
+  "experience": {
+    "eyebrow": "03 / Professional journey",
+    "titleOne": "Experience shaped",
+    "titleTwo": "by real complexity.",
+    "intro": "A path through product development, enterprise systems and financial technology.",
+    "current": "Present",
+    "roles": [
+      { "company": "NTT DATA Europe & Latam", "role": "Software Developer · Backend & Full Stack", "period": "May 2025 — Present", "description": "Backend services for banking and payment systems across Latin America, including virtual card solutions, distributed applications and cloud integrations.", "detail": "Java 17 · Node.js · TypeScript · React · Azure · Kubernetes · Event Hubs · RabbitMQ" },
+      { "company": "Algar Tech", "role": "Full-Stack Developer", "period": "Apr 2024 — May 2025", "description": "Maintained legacy systems and built new solutions, from Node.js categorization services to React and Vue interfaces and AWS integrations.", "detail": "Node.js · NestJS · React · Vue · AWS · Java · .NET" },
+      { "company": "Eventz", "role": "Software Developer", "period": "Oct 2023 — Apr 2024", "description": "Developed and improved a web platform with Laravel and Vue, contributing to features, performance, usability and code organization.", "detail": "Laravel · Vue" },
+      { "company": "NDM Advogados", "role": "Full-Stack Developer", "period": "May 2022 — Feb 2023", "description": "Built and maintained features for a web platform serving administrators and end users, with attention to performance and usability.", "detail": "React · Node.js · PostgreSQL" },
+      { "company": "Brain — Centro de Inovação em Negócios Digitais", "role": "Research & Development", "period": "Jul 2021 — May 2022", "description": "Worked on web platforms and AWS services, and participated in an IMS network implementation in a research and development setting.", "detail": "React · Node.js · AWS S3/EC2 · Asterisk · OpenIMS" },
+      { "company": "ASCII Empresa Júnior", "role": "Project Advisor", "period": "Jun 2020 — Jun 2022", "description": "Contributed to project work and served as Vice-Presidency Advisor from January to June 2021.", "detail": "Projects · Team collaboration" }
+    ],
+    "educationLabel": "Education",
+    "education": [
+      { "title": "BSc in Computer Science", "school": "Federal University of Uberlândia", "period": "2019 — 2025" },
+      { "title": "MBA in Software Architecture, Data Science & Cybersecurity", "school": "Pontifical Catholic University of Campinas", "period": "2026 — 2027 · In progress" }
+    ]
+  },
+  "work": {
+    "eyebrow": "04 / Selected professional work",
+    "titleOne": "Work in complex",
+    "titleTwo": "environments.",
+    "intro": "Examples from roles within professional teams. The work shown reflects the domains and responsibilities in my experience.",
+    "items": [
+      { "number": "01", "category": "Banking · Mexico", "title": "Virtual card services", "description": "Development and maintenance of backend services for virtual card solutions in a distributed banking environment.", "stack": "Java 17 · Hexagonal architecture · Azure · Kubernetes" },
+      { "number": "02", "category": "Payments · Argentina & Brazil", "title": "Connected payment systems", "description": "Contributed to banking applications, payment systems, REST APIs, messaging and process automation across backend and frontend.", "stack": "Node.js · TypeScript · React · RabbitMQ · Spring Batch" },
+      { "number": "03", "category": "Enterprise platforms · Brazil", "title": "Evolving existing systems", "description": "Supported legacy applications while building new services and interfaces in a multi-technology corporate environment.", "stack": "NestJS · React · Vue · AWS · Java · .NET" }
+    ]
+  },
+  "process": {
+    "eyebrow": "05 / How I work",
+    "titleOne": "A clear path from",
+    "titleTwo": "idea to impact.",
+    "steps": [
+      { "title": "Discover", "description": "Understand the challenge, the people involved and what success should look like." },
+      { "title": "Plan", "description": "Define the scope, priorities and technical direction before building." },
+      { "title": "Build", "description": "Develop the solution with useful feedback and careful integration." },
+      { "title": "Deliver", "description": "Validate, deploy and refine the result for real use." }
+    ]
+  },
+  "contact": {
+    "eyebrow": "06 / Start a conversation",
+    "titleOne": "Have a challenge?",
+    "titleTwo": "Let's make it work.",
+    "description": "Tell me what you're building, improving or trying to connect. We can find the right next step together.",
+    "email": "Send an email",
+    "whatsapp": "Message on WhatsApp",
+    "linkedin": "Connect on LinkedIn"
+  },
+  "footer": { "line": "Thoughtful software for real business needs.", "rights": "All rights reserved.", "back": "Back to top" }
+}

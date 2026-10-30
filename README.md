@@ -1,38 +1,27 @@
-# Portfolio
+# Flávio Filho — Portfolio
 
-Portfólio pessoal feito com React, Vite e Tailwind CSS.
+An editorial, bilingual portfolio built with React, Vite and Tailwind CSS. It presents digital services, professional experience and verified contact channels.
 
-O projeto reúne apresentação, experiência profissional, stack, formação e contato em uma interface com visual mais técnico e interativo.
-
-## Stack
-
-- React
-- Vite
-- Tailwind CSS
-- Lucide React
-- Recharts
-
-## Rodando o projeto
+## Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Outros comandos:
+Validation: `npm run lint` and `npm run build`.
 
-```bash
-npm run build
-npm run preview
-npm run lint
-```
+## Structure
 
-## Onde editar cada parte
+- `src/components/Sections.jsx`: page sections and shared editorial heading.
+- `src/components/EditorialMark.jsx`: the drawn underline used in editorial headings and selected copy.
+- `src/components/SiteChrome.jsx`: navigation, language and theme controls, footer.
+- `src/i18n/locales/`: English and Brazilian Portuguese content.
+- `src/hooks/useScrollReveal.js`: GSAP ScrollTrigger entrances with cleanup and reduced-motion support.
+- `src/hooks/useHeroParallax.js`: restrained desktop scroll movement for the portrait.
+- `src/hooks/useSectionNavigation.js`: eased navigation to sections, with sticky-header offset and an instant reduced-motion path.
+- `src/hooks/useTheme.js`: system theme detection and persistent manual selection.
+- `src/hooks/useMotionPreference.js`: enables motion by default and remembers a visitor's choice to reduce it.
+- `src/index.css` and `tailwind.config.js`: semantic design tokens and typography.
 
-- Hero: src/components/Hero.jsx
-- Sobre: src/components/About.jsx
-- Stack: src/components/TechStack.jsx
-- Experiência: src/components/Experience.jsx
-- Educação: src/components/Education.jsx
-- Contato: src/components/Contact.jsx
-
+The professional work cards describe responsibilities from employment history; they are not presented as independent client case studies. Academic details come from the previous portfolio content and should be reviewed against the latest résumé before publication.

@@ -1,19 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
       colors: {
-        terminal: {
-          bg: "#0a0e1a",
-          text: "#00ff88",
-          accent: "#00d4ff",
-          muted: "#64748b",
-        },
+        canvas: "rgb(var(--canvas) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        ink: "rgb(var(--ink) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
+        line: "rgb(var(--line) / <alpha-value>)",
+        accent: "rgb(var(--accent) / <alpha-value>)",
+        accentsoft: "rgb(var(--accent-soft) / <alpha-value>)",
       },
       fontFamily: {
-        mono: ["JetBrains Mono", "Menlo", "Monaco", "Courier New", "monospace"],
-        sans: ["Inter", "system-ui", "sans-serif"],
+        display: ["Libre Baskerville", "Georgia", "serif"],
+        sans: ["Inter", "Arial", "sans-serif"],
       },
     },
   },

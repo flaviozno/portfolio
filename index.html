@@ -2,38 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0a0e1a" />
-    <meta
-      name="description"
-      content="Flávio Filho's portfolio, a software developer focused on modern experiences, high-performance interfaces, and well-crafted digital products."
-    />
-    <meta
-      name="keywords"
-      content="Flávio Filho, portfolio, software developer, frontend, backend, react, javascript, web developer"
-    />
+    <meta name="theme-color" content="#faf9f6" />
+    <meta name="description" content="Flávio Filho builds websites, software, integrations, automation and thoughtful AI solutions that help businesses move forward." />
     <meta name="author" content="Flávio Filho" />
-
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Flávio Filho | Software Developer" />
-    <meta
-      property="og:description"
-      content="Explore Flávio Filho's portfolio with projects, experience, tech stack, and professional journey as a software developer."
-    />
-    <meta property="og:image" content="/icon.png" />
-    <meta property="og:site_name" content="Flávio Filho Portfolio" />
-    <meta property="og:locale" content="pt_BR" />
-
+    <meta property="og:title" content="Flávio Filho — Digital solutions for business" />
+    <meta property="og:description" content="Websites, software, integrations, automation and thoughtful AI designed around real business needs." />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Flávio Filho" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Flávio Filho | Full Stack Developer" />
-    <meta
-      name="twitter:description"
-      content="Portfolio with Flávio Filho's projects, experience, education, and technologies."
-    />
-    <meta name="twitter:image" content="/icon.png" />
-
-    <title>Flávio Filho | Software Developer</title>
+    <title>Flávio Filho — Digital solutions for business</title>
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('portfolio-theme');
+          const savedMotion = localStorage.getItem('portfolio-motion');
+          const theme = saved === 'light' || saved === 'dark' ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.dataset.motion = savedMotion === 'reduced' ? 'reduced' : 'full';
+        } catch {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.motion = 'full';
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

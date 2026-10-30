@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "title": "Flávio Filho — Soluções digitais para negócios",
+    "description": "Sites, software, integrações, automação e IA aplicada com critério para ajudar negócios a lançar, conectar e evoluir."
+  },
+  "nav": { "services": "Serviços", "about": "Sobre", "experience": "Experiência", "work": "Atuação", "contact": "Contato", "menu": "Abrir menu", "close": "Fechar menu", "themeLight": "Ativar tema claro", "themeDark": "Ativar tema escuro", "motionSetting": "Animações", "motionEnable": "Ativar animações", "motionReduce": "Reduzir animações", "language": "Escolher idioma", "primary": "Navegação principal", "mobile": "Navegação móvel", "top": "Flávio Filho — voltar ao início" },
+  "hero": {
+    "eyebrow": "Engenharia de software · Soluções digitais",
+    "lineOne": "Tecnologia que",
+    "lineTwo": "faz negócios",
+    "lineThree": "avançarem.",
+    "description": "Crio sites, software, integrações e automações — com IA quando ela agrega valor — para transformar desafios complexos em avanços concretos.",
+    "primary": "Vamos conversar sobre sua ideia",
+    "secondary": "Conheça os serviços",
+    "portraitAlt": "Retrato de Flávio Filho",
+    "portraitLabel": "Flávio Filho",
+    "portraitNote": "Desenvolvedor de software · Brasil",
+    "scroll": "Role para explorar"
+  },
+  "services": {
+    "eyebrow": "01 / O que eu faço",
+    "titleOne": "Soluções para o",
+    "titleTwo": "seu próximo passo.",
+    "intro": "Você traz o desafio. Eu transformo a necessidade em uma solução digital útil — seja um site, uma integração ou algo que ainda não cabe em uma categoria.",
+    "items": [
+      { "title": "Sites & landing pages", "description": "Lance uma presença clara e responsiva que ajude as pessoas a entender sua oferta e agir." },
+      { "title": "Software sob medida", "description": "Tenha ferramentas alinhadas aos seus processos, clientes e crescimento, sem adaptar o negócio a um modelo pronto." },
+      { "title": "APIs & integrações", "description": "Conecte plataformas e dados para que a informação circule com segurança entre as ferramentas da equipe." },
+      { "title": "Automação de processos", "description": "Reduza etapas repetitivas e libere tempo para atividades que exigem atenção humana." },
+      { "title": "Soluções de RPA", "description": "Automatize tarefas baseadas em regras nos sistemas existentes quando a operação manual limita o ritmo do negócio." },
+      { "title": "Modernização de sistemas", "description": "Evolua aplicações legadas com arquitetura mais sustentável. IA pode apoiar análise e documentação quando isso ajuda a modernizar com cuidado." },
+      { "title": "Consultoria & suporte técnico", "description": "Receba apoio prático para manter software, resolver problemas e escolher uma direção técnica consistente." }
+    ],
+    "openEyebrow": "Comece pelo seu desafio",
+    "openTitleOne": "Um problema para resolver?",
+    "openTitleTwo": "Uma ideia para ganhar vida?",
+    "openBody": "Você não precisa chegar com a solução pronta. Eu ajudo a entender o contexto, explorar possibilidades e construir o caminho que faz sentido para o seu negócio.",
+    "openCta": "Conte seu desafio",
+    "aiEyebrow": "IA aplicada com responsabilidade",
+    "aiTitle": "A ferramenta certa, na hora certa.",
+    "aiBody": "Uso IA de forma responsável para apoiar análise, prototipação e automação quando ela agrega valor. Privacidade, revisão humana e qualidade técnica orientam cada escolha."
+  },
+  "about": {
+    "eyebrow": "02 / Quem está por trás",
+    "titleOne": "Clareza para pensar.",
+    "titleTwo": "Tecnologia para usar.",
+    "lead": "Sou Flávio, desenvolvedor de software com atuação em backend, interfaces e ambientes de nuvem.",
+    "body": "Minha experiência passa por bancos e tecnologia financeira, plataformas corporativas e produtos digitais na América Latina. Procuro ligar decisões técnicas às pessoas e aos processos que elas atendem, com atenção à manutenção, à colaboração e aos detalhes que tornam um software confiável.",
+    "note": "No Brasil · Atuação na América Latina",
+    "capabilitiesLabel": "Áreas de atuação",
+    "capabilities": ["Backend & sistemas distribuídos", "Interfaces web", "Nuvem & integrações", "Automação & modernização"]
+  },
+  "experience": {
+    "eyebrow": "03 / Trajetória profissional",
+    "titleOne": "Experiência com",
+    "titleTwo": "desafios reais.",
+    "intro": "Uma trajetória entre desenvolvimento de produtos, sistemas corporativos e tecnologia financeira.",
+    "current": "Atual",
+    "roles": [
+      { "company": "NTT DATA Europe & Latam", "role": "Software Developer · Backend & Full Stack", "period": "Mai 2025 — Atual", "description": "Serviços backend para sistemas bancários e de pagamentos na América Latina, incluindo soluções de cartões virtuais, aplicações distribuídas e integrações em nuvem.", "detail": "Java 17 · Node.js · TypeScript · React · Azure · Kubernetes · Event Hubs · RabbitMQ" },
+      { "company": "Algar Tech", "role": "Full-Stack Developer", "period": "Abr 2024 — Mai 2025", "description": "Sustentação de sistemas legados e criação de novas soluções, de categorizadores em Node.js a interfaces em React e Vue e integrações com AWS.", "detail": "Node.js · NestJS · React · Vue · AWS · Java · .NET" },
+      { "company": "Eventz", "role": "Software Developer", "period": "Out 2023 — Abr 2024", "description": "Desenvolvimento e evolução de uma plataforma web com Laravel e Vue, com contribuições em funcionalidades, desempenho, usabilidade e organização do código.", "detail": "Laravel · Vue" },
+      { "company": "NDM Advogados", "role": "Full-Stack Developer", "period": "Mai 2022 — Fev 2023", "description": "Desenvolvimento e manutenção de funcionalidades para uma plataforma web de administradores e usuários, com atenção ao desempenho e à usabilidade.", "detail": "React · Node.js · PostgreSQL" },
+      { "company": "Brain — Centro de Inovação em Negócios Digitais", "role": "Pesquisa & Desenvolvimento", "period": "Jul 2021 — Mai 2022", "description": "Atuação em plataformas web e serviços AWS, além de participação na implementação de uma rede IMS em contexto de pesquisa e desenvolvimento.", "detail": "React · Node.js · AWS S3/EC2 · Asterisk · OpenIMS" },
+      { "company": "ASCII Empresa Júnior", "role": "Assessor de projetos", "period": "Jun 2020 — Jun 2022", "description": "Participação em projetos e atuação como assessor de Vice-Presidência de janeiro a junho de 2021.", "detail": "Projetos · Colaboração em equipe" }
+    ],
+    "educationLabel": "Formação",
+    "education": [
+      { "title": "Bacharelado em Ciência da Computação", "school": "Universidade Federal de Uberlândia", "period": "2019 — 2025" },
+      { "title": "MBA em Arquitetura de Software, Ciência de Dados e Cibersegurança", "school": "Pontifícia Universidade Católica de Campinas", "period": "2026 — 2027 · Em andamento" }
+    ]
+  },
+  "work": {
+    "eyebrow": "04 / Atuação profissional selecionada",
+    "titleOne": "Trabalho em",
+    "titleTwo": "ambientes complexos.",
+    "intro": "Exemplos de atuação em equipes profissionais. Os recortes refletem os domínios e responsabilidades da minha experiência.",
+    "items": [
+      { "number": "01", "category": "Bancos · México", "title": "Serviços para cartões virtuais", "description": "Desenvolvimento e manutenção de serviços backend para soluções de cartões virtuais em um ambiente bancário distribuído.", "stack": "Java 17 · Arquitetura hexagonal · Azure · Kubernetes" },
+      { "number": "02", "category": "Pagamentos · Argentina e Brasil", "title": "Sistemas de pagamento conectados", "description": "Contribuição em aplicações bancárias, sistemas de pagamentos, APIs REST, mensageria e automação de processos no backend e frontend.", "stack": "Node.js · TypeScript · React · RabbitMQ · Spring Batch" },
+      { "number": "03", "category": "Plataformas corporativas · Brasil", "title": "Evolução de sistemas existentes", "description": "Sustentação de aplicações legadas e criação de novos serviços e interfaces em um ambiente corporativo com múltiplas tecnologias.", "stack": "NestJS · React · Vue · AWS · Java · .NET" }
+    ]
+  },
+  "process": {
+    "eyebrow": "05 / Como trabalho",
+    "titleOne": "Um caminho claro",
+    "titleTwo": "da ideia ao resultado.",
+    "steps": [
+      { "title": "Entender", "description": "Conhecer o desafio, as pessoas envolvidas e o que significa ter sucesso." },
+      { "title": "Planejar", "description": "Definir escopo, prioridades e direção técnica antes de desenvolver." },
+      { "title": "Construir", "description": "Desenvolver a solução com retorno útil e integração cuidadosa." },
+      { "title": "Entregar", "description": "Validar, publicar e ajustar o resultado para o uso real." }
+    ]
+  },
+  "contact": {
+    "eyebrow": "06 / Comece uma conversa",
+    "titleOne": "Tem um desafio?",
+    "titleTwo": "Vamos resolver.",
+    "description": "Conte o que você quer criar, melhorar ou conectar. Podemos encontrar juntos o próximo passo certo.",
+    "email": "Enviar um e-mail",
+    "whatsapp": "Conversar no WhatsApp",
+    "linkedin": "Conectar no LinkedIn"
+  },
+  "footer": { "line": "Software pensado para necessidades reais de negócios.", "rights": "Todos os direitos reservados.", "back": "Voltar ao início" }
+}

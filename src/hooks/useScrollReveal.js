@@ -4,75 +4,64 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function useScrollReveal(sectionRef, steps, refreshKey) {
+const revealStyles = {
+  heading: { x: -38, y: 12, duration: .9, start: "top 82%" },
+  rise: { y: 24, duration: .72 },
+  "from-left": { x: -38, duration: .78 },
+  "from-right": { x: 38, duration: .78 },
+  card: { y: 46, scale: .96, duration: .82 },
+  "row-left": { x: -26, y: 8, duration: .7, start: "top 90%" },
+  "row-right": { x: 26, y: 8, duration: .7, start: "top 90%" },
+  scale: { y: 26, scale: .95, duration: .85 },
+  step: { y: 32, scale: .97, duration: .72 },
+  contact: { y: 46, scale: .98, duration: .95, start: "top 84%" },
+};
+
+const useScrollReveal = (sectionRef, refreshKey, motionEnabled) => {
   useLayoutEffect(() => {
-    if (!sectionRef.current) return;
+    const section = sectionRef.current;
+    if (!section || !motionEnabled) return;
+    const elements = gsap.utils.toArray("[data-reveal]", section);
+    const compact = window.matchMedia("(max-width: 639px)").matches;
 
-    const media = gsap.matchMedia();
+    const context = gsap.context((self) => {
+      elements.forEach((element) => {
+        const variant = revealStyles[element.dataset.reveal] || revealStyles.rise;
+        const { duration, start = "top 88%", ...initial } = variant;
+        const order = Number(element.dataset.revealOrder || 0);
+        const from = compact
+          ? { ...initial, x: 0, y: initial.y ? initial.y * .6 : 18, scale: initial.scale ? Math.max(initial.scale, .98) : 1 }
+          : initial;
 
-    media.add(
-      { all: "all", reduceMotion: "(prefers-reduced-motion: reduce)" },
-      ({ conditions }) => {
-        steps.forEach(({ target, from, each = false, start = "top 80%" }) => {
-          const elements = gsap.utils.toArray(target, sectionRef.current);
-          const groups = each ? elements.map((element) => [element]) : [elements];
+        ScrollTrigger.create({
+          trigger: element,
+          start,
+          once: true,
+          onEnter: () => self.add(() => {
+            gsap.fromTo(element,
+              { autoAlpha: 0, ...from },
+              { autoAlpha: 1, x: 0, y: 0, scale: 1, duration, delay: order * .065, ease: "power3.out", clearProps: "all" },
+            );
 
-          groups.forEach((group, index) => {
-            if (!group.length) return;
-
-            const bounds = group[0].getBoundingClientRect();
-            if (bounds.bottom <= 0) return;
-
-            const entrance = conditions.reduceMotion
-              ? { autoAlpha: 0, duration: 0.35 }
-              : typeof from === "function"
-                ? from(index, group[0])
-                : from;
-            const {
-              duration = 0.8,
-              stagger = 0,
-              ease = "power3.out",
-              ...initial
-            } = entrance;
-            const startingValues = { autoAlpha: 0, ...initial };
-            const restingValues = { autoAlpha: 1 };
-
-            for (const property of ["x", "y", "rotation"]) {
-              if (property in startingValues) restingValues[property] = 0;
-            }
-            if ("scale" in startingValues) restingValues.scale = 1;
-            if ("filter" in startingValues) restingValues.filter = "blur(0px)";
-            if ("clipPath" in startingValues) {
-              restingValues.clipPath = "inset(0% 0% 0% 0%)";
-            }
-
-            gsap.set(group, startingValues);
-
-            const animation = gsap.to(group, {
-              ...restingValues,
-              duration,
-              stagger,
-              ease,
-              clearProps: "all",
-              paused: true,
+            element.querySelectorAll("[data-mark]").forEach((mark) => {
+              const length = mark.getTotalLength();
+              gsap.fromTo(mark,
+                { strokeDasharray: length, strokeDashoffset: length },
+                { strokeDashoffset: 0, duration: 1.05, delay: .28 + order * .065, ease: "power2.out", clearProps: "strokeDasharray,strokeDashoffset" },
+              );
             });
-
-            if (bounds.top < window.innerHeight * 0.8) {
-              animation.play();
-            } else {
-              ScrollTrigger.create({
-                trigger: group[0],
-                start,
-                once: true,
-                onEnter: () => animation.play(),
-              });
-            }
-          });
+          }),
         });
-      },
-      sectionRef,
-    );
+      });
+    }, section);
 
-    return () => media.revert();
-  }, [sectionRef, steps, refreshKey]);
-}
+    const frame = requestAnimationFrame(() => ScrollTrigger.refresh());
+    return () => {
+      cancelAnimationFrame(frame);
+      context.revert();
+      gsap.set(elements, { clearProps: "all" });
+    };
+  }, [sectionRef, refreshKey, motionEnabled]);
+};
+
+export default useScrollReveal;
